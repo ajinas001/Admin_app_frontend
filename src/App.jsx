@@ -1,21 +1,35 @@
-import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Login from './pages/login/Login'
-import PasswordReset from './pages/passwordreset/PasswordReset'
-
+import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify'; // Import ToastContainer
+import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
+import Login from './pages/login/Login';
+import PasswordReset from './pages/passwordreset/PasswordReset';
+import Dashboard from './pages/admin/Dashboard';
+import LoadingScreen from './components/Loadingscreen';
 
 function App() {
-
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Login />}></Route>
-          <Route path='/passwordreset' element={<PasswordReset />}></Route>
+          <Route path="/" element={<LoadingScreen nextComponent={<PasswordReset />} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

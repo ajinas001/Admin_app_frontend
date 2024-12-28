@@ -1,27 +1,41 @@
 import { useState } from "react";
 import Navbar from "../../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert("ログインボタンがクリックされました！");
+
+        // Dummy credentials for login
+        const dummyEmail = "admin.s12345@allright.com";
+        const dummyPassword = "password1234";
+
+        if (email === dummyEmail && password === dummyPassword) {
+            setLoading(true); // Start loading
+            setTimeout(() => {
+                navigate("/dashboard"); // Navigate to the dashboard after 2 seconds
+            }, 2000); // 2 seconds delay
+        } else {
+            alert("ログイン情報が正しくありません。");
+        }
     };
 
     return (
         <>
             <Navbar />
             <div className="flex justify-center items-center w-full h-screen z-10 bg-background">
-            <div className="bg-background px-4 sm:px-6 md:px-3 lg:px-0 w-full max-w-[420px] mb-6 md:mb-12">
+                <div className="bg-background px-4 sm:px-6 md:px-3 lg:px-0 w-full max-w-[420px] mb-6 md:mb-12">
 
                     {/* Heading */}
                     <h2 className="text-center text-lg md:text-4xl font-semibold mb-4 text-textPrimary">
                         ログイン
                     </h2>
-                   
-
 
                     {/* Form */}
                     <form onSubmit={handleSubmit}>
@@ -36,8 +50,9 @@ function Login() {
                             <input
                                 type="email"
                                 id="email"
-                                className="mt-1 w-full h-[44px] px-4 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none text-textPrimary"
-                                placeholder="admin.s12345@allright.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="mt-1 w-full h-[44px] px-4 border rounded-md focus:ring-1 bg-white focus:ring-primary focus:outline-none text-textPrimary"
                                 required
                             />
                         </div>
@@ -53,13 +68,12 @@ function Login() {
                             <div className="relative mt-1">
                                 <input
                                     type={showPassword ? "text" : "password"}
-                                    id="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full h-[44px] px-4 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none text-textPrimary"
-                                    placeholder="••••••••••••"
+                                    className={`w-full h-[44px] px-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none text-textPrimary ${showPassword ? 'text-[16px]' : 'text-[32px]'} caret-primary`}
                                     required
                                 />
+
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
@@ -73,9 +87,14 @@ function Login() {
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className="w-full h-[48px] bg-primary hover:bg-hovercolor text-white font-medium px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+                            disabled={loading} // Disable button when loading
+                            className={`w-full h-[48px] ${loading ? 'bg-hovercolor' : 'bg-primary'} hover:bg-hovercolor text-white font-medium px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-primary flex items-center justify-center`}
                         >
-                            ログイン
+                            {loading ? (
+                                <span className="spinner"></span>  // Spinner icon
+                            ) : (
+                                "ログイン"
+                            )}
                         </button>
                     </form>
 
