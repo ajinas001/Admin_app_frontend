@@ -16,7 +16,7 @@ const Navbar = () => {
             <Link to={"/"}>
               <div className="text-xl font-bold text-primary mb-6">
                 <img
-                  src="../src/assets/images/logo.png"
+                  src="/logo.png"
                   alt="ルクミル Logo"
                   className="w-60 h-24 m-4 mt-8"
                 />

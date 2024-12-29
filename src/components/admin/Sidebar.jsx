@@ -45,7 +45,7 @@ const Sidebar = ({ onMenuClick }) => {
                         <div className="flex items-center">
                             <LuMenu size={25} />
                             <Link to={'/'}>
-                            <img src="../src/assets/images/logo.png" alt="ルクミル Logo" className="w-40 h-16 ml-8" />
+                            <img src="/logo.png" alt="ルクミル Logo" className="w-40 h-16 ml-8" />
                             </Link>
                         </div>
                     )}
@@ -57,7 +57,7 @@ const Sidebar = ({ onMenuClick }) => {
             >
                 <div className="text-xl font-bold text-primary mb-6 mt-12 ml-3 lg:mt-0">
                     <Link to={'/'}>
-                    <img src="../src/assets/images/logo.png" alt="ルクミル Logo" className="w-40 h-16" />
+                    <img src="/logo.png" alt="ルクミル Logo" className="w-40 h-16" />
                     </Link>
                 </div>
                 <nav>
