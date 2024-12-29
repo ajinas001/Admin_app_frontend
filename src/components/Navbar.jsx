@@ -8,7 +8,6 @@ const Navbar = () => {
   const location = useLocation();
 
   if (location.pathname === "/" || location.pathname === "/login") {
-    // Navbar for '/' and '/passwordreset'
     return (
       <nav className="bg-background shadow-sm z-50 fixed w-full ">
         <div className="px-6 lg:px-6">
@@ -29,9 +28,8 @@ const Navbar = () => {
   }
 
   if (location.pathname === "/dashboard") {
-    // Navbar for '/dashboard'
     return (
-      <div className="fixed top-0 left-0 w-full bg-white shadow-sm z-2 flex items-end justify-end p-4">
+      <div className="fixed top-0 left-0 w-full bg-white  z-0 flex items-end justify-end p-4">
         {/* Account Icon */}
         <div className="relative">
           <Dropdown />
@@ -39,8 +37,6 @@ const Navbar = () => {
       </div>
     );
   }
-
-  // Default (optional)
   return null;
 };
 
@@ -64,12 +60,12 @@ const Dropdown = () => {
           <ul className="py-1">
             <li className="px-4 py-2 flex items-center hover:bg-hovercolor cursor-pointer">
               <AiOutlineUser className="mr-2 text-textPrimary" />
-              マイアカウント {/* My Account */}
+              マイアカウント 
             </li>
             <Link to={"/login"}>
               <li className="px-4 py-2 flex items-center hover:bg-hovercolor cursor-pointer">
                 <LuLogOut className="mr-2 text-textPrimary" />
-                ログアウト {/* Logout */}
+                ログアウト 
               </li>
             </Link>
           </ul>

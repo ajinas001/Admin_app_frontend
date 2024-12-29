@@ -1,24 +1,13 @@
 import React from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import dataByYearAndMonth from "../../assets/data/dummyData";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const BarChart = ({ currentMonth, currentYear, onNextMonth, onPreviousMonth }) => {
-  // Correctly access the chart data using currentYear and currentMonth
   const chartData =
     dataByYearAndMonth[currentYear]?.[currentMonth] || null;
-
-  // Default chart data to display when no data is available
   const defaultData = {
     labels: [
       "10代未満", "10代", "20代", "30代", "40代", "50代", "60代", "70代", "80代", "90代以上",
@@ -54,24 +43,24 @@ const BarChart = ({ currentMonth, currentYear, onNextMonth, onPreviousMonth }) =
       legend: {
         position: "bottom",
         labels: {
-          usePointStyle: false, // Ensure the legend color is shown as a square
-          boxWidth: 20, // Size of the square
-          padding: 10, // Padding around the legend items
+          usePointStyle: false, 
+          boxWidth: 20, 
+          padding: 10, 
         },
       },
       tooltip: {
         enabled: true,
-        backgroundColor: "#ffffff", // White background
-        bodyColor: "#1d4ed8", // Primary text color
-        cornerRadius: 8, // Rounded corners
-        displayColors: true, // Show color indicators in the tooltip
-        caretPadding: 10, // Space between the tooltip arrow and content
-        caretSize: 8, // Size of the tooltip arrow
+        backgroundColor: "#ffffff", 
+        bodyColor: "#1d4ed8",
+        cornerRadius: 8, 
+        displayColors: true,
+        caretPadding: 10,
+        caretSize: 8,
         callbacks: {
-          title: () => "", // Remove x-axis label
+          title: () => "",
           label: (tooltipItem) => {
-            const total = tooltipItem.raw; // Total value
-            return `${total}人`; // Display number of people
+            const total = tooltipItem.raw;
+            return `${total}人`; 
           },
           labelColor: (tooltipItem) => {
             return {
@@ -89,14 +78,13 @@ const BarChart = ({ currentMonth, currentYear, onNextMonth, onPreviousMonth }) =
           display: false,
         },
         ticks: {
-          maxRotation: 0, // Prevent rotation of labels
-          minRotation: 0, // Keep labels horizontal
-          padding: 10, // Add padding between labels and axis
+          maxRotation: 0,
+          minRotation: 0,
+          padding: 10,
           font: {
-            size: 14, // Ensure the labels are readable
+            size: 14, 
           },
           callback: function (value, index, values) {
-            // Return the full label based on the index
             return this.getLabelForValue(value);
           },
         },
@@ -115,9 +103,9 @@ const BarChart = ({ currentMonth, currentYear, onNextMonth, onPreviousMonth }) =
         },
       },
     },
-    
+
   };
-  
+
 
   return (
     <div className="bg-white px-4 py-16 md:py-12 rounded-lg shadow-md h-[400px]">

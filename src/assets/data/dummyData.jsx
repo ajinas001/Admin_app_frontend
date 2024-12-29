@@ -1,3 +1,4 @@
+//dummy data for statcards
 export const statData = [
 
   {
@@ -316,6 +317,8 @@ export const statDataByMonth = {
     ],
   },
 };
+
+//dummy data for barchart
 const dataByYearAndMonth = {
   2024: {
     10: {
@@ -323,22 +326,22 @@ const dataByYearAndMonth = {
       datasets: [
         {
           label: "男性",
-          data: [128, 216, 392, 268, 328, 340, 280, 216, 128, 80], // Reduced by 20%
+          data: [128, 216, 392, 268, 328, 340, 280, 216, 128, 80],
           backgroundColor: "#ff9500",
         },
         {
           label: "女性",
-          data: [112, 200, 376, 144, 296, 316, 256, 200, 112, 72], // Reduced by 20%
+          data: [112, 200, 376, 144, 296, 316, 256, 200, 112, 72], 
           backgroundColor: "#ffb854",
         },
         {
           label: "その他",
-          data: [40, 68, 96, 120, 176, 144, 112, 68, 40, 24], // Reduced by 20%
+          data: [40, 68, 96, 120, 176, 144, 112, 68, 40, 24], 
           backgroundColor: "#ffce8a",
         },
         {
           label: "回答なし",
-          data: [28, 36, 60, 88, 112, 96, 72, 36, 28, 20], // Reduced by 20%
+          data: [28, 36, 60, 88, 112, 96, 72, 36, 28, 20], 
           backgroundColor: "#ffdeb0",
         },
       ],
@@ -348,22 +351,22 @@ const dataByYearAndMonth = {
       datasets: [
         {
           label: "男性",
-          data: [136, 224, 400, 576, 336, 348, 288, 224, 136, 88], // Reduced by 20%
+          data: [136, 224, 400, 576, 336, 348, 288, 224, 136, 88],
           backgroundColor: "#ff9500",
         },
         {
           label: "女性",
-          data: [120, 208, 384, 552, 204, 224, 264, 208, 120, 80], // Reduced by 20%
+          data: [120, 208, 384, 552, 204, 224, 264, 208, 120, 80], 
           backgroundColor: "#ffb854",
         },
         {
           label: "その他",
-          data: [44, 72, 104, 128, 184, 152, 120, 72, 44, 28], // Reduced by 20%
+          data: [44, 72, 104, 128, 184, 152, 120, 72, 44, 28],
           backgroundColor: "#ffce8a",
         },
         {
           label: "回答なし",
-          data: [32, 40, 64, 96, 120, 104, 80, 40, 32, 24], // Reduced by 20%
+          data: [32, 40, 64, 96, 120, 104, 80, 40, 32, 24], 
           backgroundColor: "#ffdeb0",
         },
       ],
@@ -373,30 +376,31 @@ const dataByYearAndMonth = {
       datasets: [
         {
           label: "男性",
-          data: [180, 190, 110, 230, 330, 220, 320, 290, 180, 120], // No changes for December
+          data: [180, 190, 110, 230, 330, 220, 320, 290, 180, 120],
           backgroundColor: "#ff9500",
         },
         {
           label: "女性",
-          data: [160, 170, 290, 300, 390, 390, 290, 270, 160, 110], // No changes for December
+          data: [160, 170, 290, 300, 390, 390, 290, 270, 160, 110],
           backgroundColor: "#ffb854",
         },
         {
           label: "その他",
-          data: [60, 95, 140, 70, 140, 200, 160, 95, 60, 40], // No changes for December
+          data: [60, 95, 140, 70, 140, 200, 160, 95, 60, 40],
           backgroundColor: "#ffce8a",
         },
         {
           label: "回答なし",
-          data: [45, 55, 85, 130, 60, 140, 110, 55, 45, 35], // No changes for December
+          data: [45, 55, 85, 130, 60, 140, 110, 55, 45, 35],
           backgroundColor: "#ffdeb0",
         },
       ],
     },
   },
 };
-
 export default dataByYearAndMonth;
+
+//dummy data for registered users
 export const dummyData = [
   { no: 1, nickname: "ゆうと", email: "example1@example.com", birth: "1992年 12月", gender: "男性", location: "東京都", registrationDate: "2024年01月12日" },
   { no: 2, nickname: "ニックネーム最大12文字", email: "user234@example.net", birth: "1987年 5月", gender: "女性", location: "東京都", registrationDate: "2024年01月12日" },

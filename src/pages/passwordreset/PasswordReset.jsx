@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
-import { useNavigate } from "react-router-dom"; // Ensure this is set up in your project
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -58,21 +58,17 @@ function PasswordReset() {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-                className="z-[9999] fixed bottom-5 w-full" // Ensure visibility over other components
+                className="z-[9999] fixed bottom-5 w-full" 
             />
             <div className="flex justify-center items-center w-full h-screen z-10 bg-background">
                 <div className="bg-background px-8 lg:px-0 w-auto lg:w-[420px] mb-0 md:mb-12">
-                    {/* Heading */}
-                    <h2 className="text-center text-lg md:text-4xl font-semibold mb-4 text-textPrimary">
+                    <h2 className="text-center text-2xl md:text-4xl font-semibold mb-4 text-textPrimary">
                         パスワード設定
                     </h2>
                     <p className="text-center text-sm md:text-md text-textSecondary mb-6 px-0 sm:px-8 lg:mb-12">
                         パスワードを入力後 [設定ボタン] を押してサービスの利用を開始してください。
                     </p>
-
-                    {/* Form */}
                     <form onSubmit={handleSubmit}>
-                        {/* Password Field */}
                         <div className="mb-6">
                             <label
                                 htmlFor="password"
@@ -101,8 +97,6 @@ function PasswordReset() {
                                 半角大文字・小文字・数字を含めた8文字以上20文字以内
                             </p>
                         </div>
-
-                        {/* Confirm Password Field */}
                         <div className="mb-6">
                             <label
                                 htmlFor="confirmPassword"
@@ -128,16 +122,13 @@ function PasswordReset() {
                                 </button>
                             </div>
                         </div>
-
-                        {/* Submit Button */}
-                       
                         <button
                             type="submit"
-                            disabled={loading} // Disable button when loading
+                            disabled={loading}
                             className={`w-full h-[48px] ${loading ? 'bg-hovercolor' : 'bg-primary'} hover:bg-hovercolor text-white font-medium px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-primary flex items-center justify-center`}
                         >
                             {loading ? (
-                                <span className="spinner"></span>  // Spinner icon
+                                <span className="spinner"></span>
                             ) : (
                                 " 設定"
                             )}

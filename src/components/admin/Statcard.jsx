@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
-import { mycontext } from '../../context/Context';
 
 const StatCard = ({ title, value, subValue, change, positive, date, number }) => {
-    // const datas = useContext(mycontext)
 
     return (
         <div className="bg-white p-4 rounded-lg shadow-sm">
@@ -27,10 +25,7 @@ const StatCard = ({ title, value, subValue, change, positive, date, number }) =>
                     </span>
                     {change}
                 </p>
-
-
             </div>
-
         </div>
     );
 };

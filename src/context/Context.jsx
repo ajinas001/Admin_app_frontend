@@ -13,8 +13,6 @@ function Context({children}) {
         </mycontext.Provider>
 
     )
-
-
 }
 
 export default Context

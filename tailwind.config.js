@@ -4,16 +4,16 @@ module.exports = {
     extend: {
       colors: {
         background:"#f8f5f0",
-        primary: "#ff9500", // Button color
-        hovercolor: "#fcc578", // Button color
+        primary: "#ff9500", 
+        hovercolor: "#fcc578", 
         textPrimary: "#333333",
         textSecondary: "#666666",
       },
       fontFamily: {
-        sans: ["Noto Sans JP", "sans-serif"], // Use the font from Figma
+        sans: ["Noto Sans JP", "sans-serif"], 
       },
       screens: {
-        xs: '280px', // Example breakpoint for xs
+        xs: '280px',
       },
     },
   },

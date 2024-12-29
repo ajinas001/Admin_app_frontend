@@ -10,12 +10,10 @@ import Navbar from "../../components/Navbar";
 
 const Dashboard = () => {
   const [activeSection, setActiveSection] = useState("ダッシュボード");
-
-  // State for the selected month and year
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1);
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-  // Default dummy data for empty state
+
   const navigate = useNavigate();
 
   const disableNavigation = () => {
@@ -30,15 +28,15 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"; // Explicit comparison
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     if (!isLoggedIn) {
-      navigate("/", { replace: true }); // Redirect to login page
+      navigate("/", { replace: true });
     } else {
-      disableNavigation(); // Prevent back navigation
+      disableNavigation();
     }
   }, [navigate]);
-  
 
+  // Default dummy data for empty state
   const defaultDummyData = [
     {
       title: "ユーザー登録数計",
@@ -96,7 +94,6 @@ const Dashboard = () => {
     },
   ];
 
-  // Handlers for month navigation
   const handleNextMonth = () => {
     if (currentMonth === 12) {
       setCurrentMonth(1);
@@ -115,7 +112,7 @@ const Dashboard = () => {
     }
   };
 
-  // Get data for the selected month and year
+
   const getStatDataForMonth = () => {
     const data = statDataByMonth[currentYear]?.[currentMonth];
     return data && data.length > 0 ? data : defaultDummyData;
@@ -185,7 +182,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col md:flex-row h-full bg-background">
-      <Navbar/>
+      <Navbar />
       <Sidebar onMenuClick={setActiveSection} />
       <div className="flex-1 p-6 mt-8 lg:ml-0 overflow-y-auto">
         {renderContent()}

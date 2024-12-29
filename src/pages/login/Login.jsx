@@ -29,17 +29,16 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Dummy credentials for login
         const dummyEmail = "admin.s12345@allright.com";
         const dummyPassword = "password1234";
 
         if (email === dummyEmail && password === dummyPassword) {
            
-            setLoading(true); // Start loading
+            setLoading(true);
             setTimeout(() => {
                 localStorage.setItem("isLoggedIn", "true");
-                navigate("/dashboard", { replace: true }); // Navigate to the dashboard after 2 seconds
-            }, 2000); // 2 seconds delay
+                navigate("/dashboard", { replace: true });
+            }, 2000);
         } else {
             toast.error("ログイン情報が正しくありません。", {
                 position: "bottom-center",
@@ -58,14 +57,10 @@ function Login() {
             <Navbar />
             <div className="flex justify-center items-center w-full h-screen z-10 bg-background">
                 <div className="bg-background px-4 sm:px-6 md:px-3 lg:px-0 w-full max-w-[420px] mb-6 md:mb-12">
-                    {/* Heading */}
-                    <h2 className="text-center text-lg md:text-4xl font-semibold mb-4 text-textPrimary">
+                    <h2 className="text-center text-2xl md:text-4xl font-semibold mb-4 text-textPrimary">
                         ログイン
                     </h2>
-
-                    {/* Form */}
                     <form onSubmit={handleSubmit}>
-                        {/* Email Field */}
                         <div className="mb-4">
                             <label
                                 htmlFor="email"
@@ -82,8 +77,6 @@ function Login() {
                                 required
                             />
                         </div>
-
-                        {/* Password Field */}
                         <div className="mb-6">
                             <label
                                 htmlFor="password"
@@ -109,29 +102,23 @@ function Login() {
                                 </button>
                             </div>
                         </div>
-
-                        {/* Submit Button */}
                         <button
                             type="submit"
-                            disabled={loading} // Disable button when loading
+                            disabled={loading} 
                             className={`w-full h-[48px] ${loading ? 'bg-hovercolor' : 'bg-primary'} hover:bg-hovercolor text-white font-medium px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-primary flex items-center justify-center`}
                         >
                             {loading ? (
-                                <span className="spinner"></span>  // Spinner icon
+                                <span className="spinner"></span> 
                             ) : (
                                 "ログイン"
                             )}
                         </button>
                     </form>
-
-                    {/* Forgot Password */}
                     <p className="mt-4 text-center text-sm text-textPrimary">
                         パスワードをお忘れの場合
                     </p>
                 </div>
             </div>
-
-            {/* Toast Container */}
             <ToastContainer />
         </>
     );

@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
+import 'react-toastify/dist/ReactToastify.css';
 import Login from './pages/login/Login';
 import PasswordReset from './pages/passwordreset/PasswordReset';
 import Dashboard from './pages/admin/Dashboard';
@@ -15,9 +15,10 @@ function App() {
         <Routes>
           <Route path="/" element={<LoadingScreen nextComponent={<PasswordReset />} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />}/>
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
+
       <ToastContainer
         position="bottom-center"
         autoClose={3000}
