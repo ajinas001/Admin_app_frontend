@@ -15,7 +15,7 @@ function LoadingScreen({ nextComponent }) {
     <>
       {showLoading ? (
         <div className="flex justify-center items-center w-full h-screen bg-background">
-         <img src="../src/assets/images/logo.png" alt="ルクミル Logo" className="w-96 h-40" />
+         <img src='/logo.png' alt="ルクミル Logo" className="w-96 h-40" />
         </div>
       ) : (
         nextComponent

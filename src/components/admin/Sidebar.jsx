@@ -52,7 +52,7 @@ const Sidebar = ({ onMenuClick }) => {
             </button>
 
             <div
-                className={`fixed top-0 left-0 h-full bg-white shadow-sm  z-40 transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"
+                className={`fixed top-0 left-0 h-full bg-white shadow-sm  z-40 transition-transform duration-300 ${isOpen ? "translate-x-0 w-72" : "-translate-x-full"
                     } lg:translate-x-0 lg:w-64 lg:static`}
             >
                 <div className="text-xl font-bold text-primary mb-6 mt-12 ml-3 lg:mt-0">
@@ -65,7 +65,7 @@ const Sidebar = ({ onMenuClick }) => {
                         {menuItems.map((item) => (
                             <li
                                 key={item.name}
-                                className={`cursor-pointer p-3 px-4  flex items-center  ${activeItem === item.name
+                                className={`cursor-pointer p-3 px-4 text-sm md:text-lg flex items-center  ${activeItem === item.name
                                     ? "bg-[#fff4e6] text-primary font-bold w-full border-r-4 border-primary" // Added 'font-bold' for active item
                                     : "text-textPrimary hover:bg-gray-100 hover:text-primary"
                                     }`}

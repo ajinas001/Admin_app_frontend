@@ -38,37 +38,67 @@ const RegisteredUsers = () => {
         <div className="w-full min-h-screen max-w-7xl mx-auto p-4 bg-background">
             {/* Header and Search */}
             <div className="p-4  z-10">
-            <div className="flex flex-wrap justify-between items-center gap-4">
-    <h2 className="text-lg md:text-2xl font-bold text-textPrimary">
-        登録ユーザー一覧
-    </h2>
-    <div className="flex items-center w-full sm:w-72">
-        <input
-            type="text"
-            placeholder={`ニックネーム / メールアドレスで検索`}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full p-2 pl-8 pr-4 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-        />
-        <span className="absolute left-2 flex items-center pointer-events-none">
-            <FiSearch className="text-gray-400 w-5 h-5" />
-        </span>
-    </div>
-</div>
+                <div className="flex flex-wrap justify-between items-center gap-4">
+                    <h2 className="text-lg md:text-2xl font-bold text-textPrimary">
+                        登録ユーザー一覧
+                    </h2>
+                    <div className="flex items-center w-full sm:w-72  relative">
+                        <input
+                            type="text"
+                            placeholder={`🔎ニックネーム / メールアドレスで検索`}
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full p-2 pl-8 pr-4 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                        />
+                        <span className="absolute left-2 flex items-center pointer-events-none">
+                            <FiSearch className="text-gray-400 w-5 h-5" />
+                        </span>
+                    </div>
+                </div>
 
             </div>
 
             {/* Content */}
             {isLoading ? (
+                <>
+                <table className="hidden lg:block table-auto w-full text-sm md:text-base divide-y divide-gray-300">
+                <thead className="bg-white text-textSecondary">
+                    <tr>
+                        <th className="p-4 pl-4 text-left w-[5%]">No.</th>
+                        <th className="p-2 text-left w-[20%]">ニックネーム</th>
+                        <th className="p-2 text-left w-[25%]">メールアドレス</th>
+                        <th className="p-2 text-left w-[15%]">生年月</th>
+                        <th className="p-2 text-left w-[10%]">性別</th>
+                        <th className="p-2 text-left w-[15%]">居住地</th>
+                        <th className="p-2 text-left w-[15%]">登録日</th>
+                    </tr>
+                </thead>
+            </table>
                 <div className="flex items-center justify-center min-h-[50vh]">
                     <div className="animate-spin w-8 h-8 border-4 bg-background lg:m-40 border-primary border-t-transparent rounded-full"></div>
                 </div>
+                </>
             ) : filteredData.length === 0 ? (
-                <div className="flex flex-col items-center justify-center min-h-[50vh] bg-background">
-                    <p className="text-gray-500 text-center">
-                        表示するデータがありません
-                    </p>
-                </div>
+                <>
+                    <table className="hidden lg:block table-auto w-full text-sm md:text-base divide-y divide-gray-300">
+                        <thead className="bg-white text-textSecondary">
+                            <tr>
+                                <th className="p-4 pl-4 text-left w-[5%]">No.</th>
+                                <th className="p-2 text-left w-[20%]">ニックネーム</th>
+                                <th className="p-2 text-left w-[25%]">メールアドレス</th>
+                                <th className="p-2 text-left w-[15%]">生年月</th>
+                                <th className="p-2 text-left w-[10%]">性別</th>
+                                <th className="p-2 text-left w-[15%]">居住地</th>
+                                <th className="p-2 text-left w-[15%]">登録日</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div className="flex flex-col items-center justify-center min-h-[50vh] bg-background">
+                        <p className="text-gray-500 text-center">
+                            表示するデータがありません
+                        </p>
+                    </div>
+                </>
             ) : (
                 <div className="bg-white rounded-lg shadow mt-8 overflow-hidden sm:min-h-full">
                     <div className="overflow-x-auto">
@@ -132,8 +162,8 @@ const RegisteredUsers = () => {
                             onClick={() => handlePageChange(currentPage - 1)}
                             disabled={currentPage === 1}
                             className={`px-2 md:px-3 py-1 rounded-md ${currentPage === 1
-                                    ? "bg-white text-gray-500 cursor-not-allowed"
-                                    : "bg-white text-gray-600 hover:bg-primary hover:text-white"
+                                ? "bg-white text-gray-500 cursor-not-allowed"
+                                : "bg-white text-gray-600 hover:bg-primary hover:text-white"
                                 }`}
                         >
                             &lt;
@@ -141,8 +171,8 @@ const RegisteredUsers = () => {
                         <button
                             onClick={() => handlePageChange(1)}
                             className={`px-2 md:px-3 py-1 rounded-md ${currentPage === 1
-                                    ? "bg-primary text-white"
-                                    : "bg-white text-gray-600 hover:bg-primary hover:text-white"
+                                ? "bg-primary text-white"
+                                : "bg-white text-gray-600 hover:bg-primary hover:text-white"
                                 }`}
                         >
                             1
@@ -158,8 +188,8 @@ const RegisteredUsers = () => {
                                     key={page}
                                     onClick={() => handlePageChange(page)}
                                     className={`px-2 md:px-3 py-1 rounded-md ${currentPage === page
-                                            ? "bg-primary text-white"
-                                            : "bg-white text-textPrimary hover:bg-primary hover:text-white"
+                                        ? "bg-primary text-white"
+                                        : "bg-white text-textPrimary hover:bg-primary hover:text-white"
                                         }`}
                                 >
                                     {page}
@@ -172,8 +202,8 @@ const RegisteredUsers = () => {
                             <button
                                 onClick={() => handlePageChange(totalPages)}
                                 className={`px-2 md:px-3 py-1 rounded-md ${currentPage === totalPages
-                                        ? "bg-primary text-white"
-                                        : "bg-white text-gray-600 hover:bg-primary hover:text-white"
+                                    ? "bg-primary text-white"
+                                    : "bg-white text-gray-600 hover:bg-primary hover:text-white"
                                     }`}
                             >
                                 {totalPages}
@@ -183,8 +213,8 @@ const RegisteredUsers = () => {
                             onClick={() => handlePageChange(currentPage + 1)}
                             disabled={currentPage === totalPages}
                             className={`px-2 md:px-3 py-1 rounded-md ${currentPage === totalPages
-                                    ? "bg-white text-gray-500 cursor-not-allowed"
-                                    : "bg-white text-gray-600 hover:bg-primary hover:text-white"
+                                ? "bg-white text-gray-500 cursor-not-allowed"
+                                : "bg-white text-gray-600 hover:bg-primary hover:text-white"
                                 }`}
                         >
                             &gt;
