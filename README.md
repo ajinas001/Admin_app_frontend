@@ -1,4 +1,4 @@
-# React Admin App Task
+# React Admin App 
 
 This project implements the **Login**, **Logout**, **Password Reset**, **Dashboard**, and **User List** pages as per the Figma design provided by JIITAK. The application is fully responsive, incorporates state management, and uses dummy data for listing pages.
 
