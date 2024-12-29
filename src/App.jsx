@@ -1,20 +1,21 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify'; // Import ToastContainer
-import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 import Login from './pages/login/Login';
 import PasswordReset from './pages/passwordreset/PasswordReset';
 import Dashboard from './pages/admin/Dashboard';
 import LoadingScreen from './components/Loadingscreen';
 
 function App() {
+
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoadingScreen nextComponent={<PasswordReset />} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />}/>
         </Routes>
       </BrowserRouter>
       <ToastContainer
@@ -28,6 +29,7 @@ function App() {
         draggable
         pauseOnHover
       />
+
     </>
   );
 }

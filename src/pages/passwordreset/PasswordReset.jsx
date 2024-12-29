@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import { useNavigate } from "react-router-dom"; // Ensure this is set up in your project
 import { toast, ToastContainer } from "react-toastify";
@@ -12,23 +12,38 @@ function PasswordReset() {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const navigate = useNavigate();
 
+    const disableNavigation = () => {
+        window.history.pushState(null, "", window.location.href);
+        const handlePopState = () => {
+          window.history.pushState(null, "", window.location.href);
+        };
+        window.addEventListener("popstate", handlePopState);
+        return () => {
+          window.removeEventListener("popstate", handlePopState);
+        };
+      };
+
+    useEffect(() => {
+        localStorage.setItem("isLoggedIn","false")
+        disableNavigation();
+      }, []);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Validation
         if (password !== confirmPassword) {
-            toast.error("Passwords do not match!");
+            toast.error("パスワードが一致しません！");
             return;
         }
         if (password.length < 8 || password.length > 20) {
-            toast.error("Password must be between 8 and 20 characters.");
+            toast.error("パスワードは8文字以上20文字以内で入力してください。");
             return;
         }
-
-        toast.success("Password set successfully!");
-        setLoading(true)
-        setTimeout(() => navigate("/login"), 2000); // Navigate after a slight delay
+    
+        toast.success("パスワードが正常に設定されました！");
+        setLoading(true);
+        setTimeout(() => navigate("/login", { replace: true }), 2000);
     };
+    
 
     return (
         <>
@@ -71,7 +86,7 @@ function PasswordReset() {
                                     id="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className={`w-full h-[44px] px-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none text-textPrimary ${showPassword ? 'text-[16px]' : 'text-[32px]'} caret-primary`}
+                                    className={`w-full h-[44px] px-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none text-textPrimary ${showPassword ? 'text-[16px]' : 'text-[16px] md:text-[32px] '} caret-primary`}
                                     required
                                 />
                                 <button
@@ -101,7 +116,7 @@ function PasswordReset() {
                                     id="confirmPassword"
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
-                                    className={`w-full h-[44px] px-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none text-textPrimary ${showConfirmPassword ? 'text-[16px]' : 'text-[32px]'} caret-primary`}
+                                    className={`w-full h-[44px] px-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none text-textPrimary ${showConfirmPassword ? 'text-[16px]' : 'text-[16px] md:text-[32px] '} caret-primary`}
                                     required
                                 />
                                 <button

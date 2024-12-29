@@ -6,6 +6,7 @@ import { IoGiftOutline } from "react-icons/io5";
 import { LuUsersRound } from "react-icons/lu";
 import { LiaUserTieSolid } from "react-icons/lia";
 import { AiOutlineAppstore } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Sidebar = ({ onMenuClick }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -36,14 +37,16 @@ const Sidebar = ({ onMenuClick }) => {
         <div className="relative md:min-h-screen">
             <button
                 onClick={toggleSidebar}
-                className="text-textPrimary rounded-md fixed top-0 left-4 z-50 lg:hidden md:block"
+                className="  text-textPrimary rounded-md fixed top-0 left-4 z-50 lg:hidden md:block"
             >
                 {isOpen
                     ? <IoClose size={25} className="top-4 left-4 mt-6 ml-28" />
                     : (
                         <div className="flex items-center">
                             <LuMenu size={25} />
-                            <img src="../src/assets/images/logo.png" alt="ルクミル Logo" className="w-40 h-16 ml-2" />
+                            <Link to={'/'}>
+                            <img src="../src/assets/images/logo.png" alt="ルクミル Logo" className="w-40 h-16 ml-8" />
+                            </Link>
                         </div>
                     )}
             </button>
@@ -53,10 +56,12 @@ const Sidebar = ({ onMenuClick }) => {
                     } lg:translate-x-0 lg:w-64 lg:static`}
             >
                 <div className="text-xl font-bold text-primary mb-6 mt-12 ml-3 lg:mt-0">
+                    <Link to={'/'}>
                     <img src="../src/assets/images/logo.png" alt="ルクミル Logo" className="w-40 h-16" />
+                    </Link>
                 </div>
                 <nav>
-                    <ul className="space-y-4">
+                    <ul className="space-y-2">
                         {menuItems.map((item) => (
                             <li
                                 key={item.name}

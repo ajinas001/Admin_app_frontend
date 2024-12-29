@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -8,6 +10,21 @@ function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+
+    const disableNavigation = () => {
+        window.history.pushState(null, "", window.location.href);
+        const handlePopState = () => {
+          window.history.pushState(null, "", window.location.href);
+        };
+        window.addEventListener("popstate", handlePopState);
+        return () => {
+          window.removeEventListener("popstate", handlePopState);
+        };
+      };
+
+    useEffect(() => {
+        disableNavigation();
+      }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,12 +34,22 @@ function Login() {
         const dummyPassword = "password1234";
 
         if (email === dummyEmail && password === dummyPassword) {
+           
             setLoading(true); // Start loading
             setTimeout(() => {
-                navigate("/dashboard"); // Navigate to the dashboard after 2 seconds
+                localStorage.setItem("isLoggedIn", "true");
+                navigate("/dashboard", { replace: true }); // Navigate to the dashboard after 2 seconds
             }, 2000); // 2 seconds delay
         } else {
-            alert("ログイン情報が正しくありません。");
+            toast.error("ログイン情報が正しくありません。", {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+            });
         }
     };
 
@@ -31,7 +58,6 @@ function Login() {
             <Navbar />
             <div className="flex justify-center items-center w-full h-screen z-10 bg-background">
                 <div className="bg-background px-4 sm:px-6 md:px-3 lg:px-0 w-full max-w-[420px] mb-6 md:mb-12">
-
                     {/* Heading */}
                     <h2 className="text-center text-lg md:text-4xl font-semibold mb-4 text-textPrimary">
                         ログイン
@@ -70,7 +96,7 @@ function Login() {
                                     type={showPassword ? "text" : "password"}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className={`w-full h-[44px] px-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none text-textPrimary ${showPassword ? 'text-[16px]' : 'text-[32px]'} caret-primary`}
+                                    className={`w-full h-[44px] px-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none text-textPrimary ${showPassword ? 'text-[16px]' : 'text-[16px] md:text-[32px] '} caret-primary`}
                                     required
                                 />
 
@@ -104,6 +130,9 @@ function Login() {
                     </p>
                 </div>
             </div>
+
+            {/* Toast Container */}
+            <ToastContainer />
         </>
     );
 }

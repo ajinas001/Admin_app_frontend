@@ -4,7 +4,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { LuLogOut } from "react-icons/lu";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbaradmin = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -42,4 +42,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbaradmin;
