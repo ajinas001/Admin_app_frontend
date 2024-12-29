@@ -9,7 +9,6 @@ const RegisteredUsers = () => {
     const [isLoading, setIsLoading] = useState(false);
     const usersPerPage = 10;
 
-    // Filter data based on the search query
     const filteredData = dummyData.filter(
         (user) =>
             user.nickname.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -36,75 +35,67 @@ const RegisteredUsers = () => {
     }, [searchQuery, currentPage]);
 
     return (
-        <div className="w-full sm:min-h-screen max-w-7xl mx-auto p-4">
+        <div className="w-full min-h-screen max-w-7xl mx-auto p-4 bg-background">
             {/* Header and Search */}
+            <div className="p-4  z-10">
             <div className="flex flex-wrap justify-between items-center gap-4">
-                <h2 className="text-lg md:text-2xl font-bold text-textPrimary">
-                    登録ユーザー一覧
-                </h2>
-                <div className="flex items-center w-full sm:w-72 relative">
-                    <FiSearch className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <input
-                        type="text"
-                        placeholder="ニックネーム / メールアドレスで検索"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full p-2 pl-10 pr-4 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                </div>
+    <h2 className="text-lg md:text-2xl font-bold text-textPrimary">
+        登録ユーザー一覧
+    </h2>
+    <div className="flex items-center w-full sm:w-72">
+        <input
+            type="text"
+            placeholder={`ニックネーム / メールアドレスで検索`}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full p-2 pl-8 pr-4 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+        />
+        <span className="absolute left-2 flex items-center pointer-events-none">
+            <FiSearch className="text-gray-400 w-5 h-5" />
+        </span>
+    </div>
+</div>
+
             </div>
 
-            {/* Table */}
-            <div className="bg-white rounded-lg shadow mt-8 overflow-hidden sm:min-h-full">
-                <div className="overflow-x-auto">
-                    <table className="table-auto w-full text-sm md:text-base divide-y divide-gray-300">
-                        <thead className="bg-white text-textSecondary">
-                            <tr>
-                                <th className="p-4 pl-4 text-left">No.</th>
-                                <th className="p-2 text-left">ニックネーム</th>
-                                <th className="p-2 text-left">メールアドレス</th>
-                                <th className="p-2 text-left">生年月</th>
-                                <th className="p-2 text-left">性別</th>
-                                <th className="p-2 text-left">居住地</th>
-                                <th className="p-2 text-left">登録日</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-300">
-                            {isLoading ? (
+            {/* Content */}
+            {isLoading ? (
+                <div className="flex items-center justify-center min-h-[50vh]">
+                    <div className="animate-spin w-8 h-8 border-4 bg-background lg:m-40 border-primary border-t-transparent rounded-full"></div>
+                </div>
+            ) : filteredData.length === 0 ? (
+                <div className="flex flex-col items-center justify-center min-h-[50vh] bg-background">
+                    <p className="text-gray-500 text-center">
+                        表示するデータがありません
+                    </p>
+                </div>
+            ) : (
+                <div className="bg-white rounded-lg shadow mt-8 overflow-hidden sm:min-h-full">
+                    <div className="overflow-x-auto">
+                        <table className="table-auto w-full text-sm md:text-base divide-y divide-gray-300">
+                            <thead className="bg-white text-textSecondary">
                                 <tr>
-                                    <td colSpan="7" className="text-center p-4">
-                                        <div className="flex items-center justify-center">
-                                            <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full"></div>
-                                        </div>
-                                    </td>
+                                    <th className="p-4 pl-4 text-left w-[5%]">No.</th>
+                                    <th className="p-2 text-left w-[20%]">ニックネーム</th>
+                                    <th className="p-2 text-left w-[25%]">メールアドレス</th>
+                                    <th className="p-2 text-left w-[15%]">生年月</th>
+                                    <th className="p-2 text-left w-[10%]">性別</th>
+                                    <th className="p-2 text-left w-[15%]">居住地</th>
+                                    <th className="p-2 text-left w-[15%]">登録日</th>
                                 </tr>
-                            ) : filteredData.length === 0 ? (
-                                <tr>
-                                    <td
-                                        colSpan="7"
-                                        className="text-center p-4 text-gray-500"
-                                    >
-                                        データが見つかりません。
-                                    </td>
-                                </tr>
-                            ) : (
-                                currentUsers.map((user, index) => (
+                            </thead>
+                            <tbody className="divide-y divide-gray-300">
+                                {currentUsers.map((user, index) => (
                                     <tr
                                         key={user.no}
                                         className="hover:bg-gray-50 text-start whitespace-nowrap text-textSecondary"
                                     >
-                                        <td className="p-2 pl-4">
-                                            {user.no}.
-                                        </td>
-                                        <td className="p-2">
-                                            {user.nickname}
-                                        </td>
+                                        {user.no && <td className="p-2 pl-4">{user.no}.</td>}
+                                        <td className="p-2">{user.nickname}</td>
                                         <td className="p-2">
                                             <span
                                                 data-tooltip-id={`tooltip-${user.no}`}
-                                                data-tooltip-content={
-                                                    user.email
-                                                }
+                                                data-tooltip-content={user.email}
                                                 className="truncate w-48 block overflow-hidden text-ellipsis cursor-pointer"
                                             >
                                                 {user.email}
@@ -119,19 +110,16 @@ const RegisteredUsers = () => {
                                         <td className="p-2">{user.birth}</td>
                                         <td className="p-2">{user.gender}</td>
                                         <td className="p-2">{user.location}</td>
-                                        <td className="p-2">
-                                            {user.registrationDate}
-                                        </td>
+                                        <td className="p-2">{user.registrationDate}</td>
                                     </tr>
-                                ))
-                            )}
-                        </tbody>
-                    </table>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* Pagination */}
-            {/* Show pagination only if there are filtered results */}
             {filteredData.length > 0 && (
                 <div className="flex flex-wrap justify-between items-center mt-12 text-sm gap-4">
                     <div className="flex-shrink-0">

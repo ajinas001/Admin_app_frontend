@@ -37,7 +37,7 @@ const Sidebar = ({ onMenuClick }) => {
         <div className="relative md:min-h-screen">
             <button
                 onClick={toggleSidebar}
-                className="  text-textPrimary rounded-md fixed top-0 left-4 z-50 lg:hidden md:block"
+                className="text-textPrimary rounded-md fixed top-0 left-4 z-50 lg:hidden md:block"
             >
                 {isOpen
                     ? <IoClose size={25} className="top-4 left-4 mt-6 ml-28" />
